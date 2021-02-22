@@ -1,7 +1,21 @@
 window.addEventListener('DOMContentLoaded', async function(event) {
+
+//add sign in 
+
+let ui = new firebaseui.auth.AuthUI(firebase.auth())
+
+let AuthUIConfig = {
+  signInOptions: [
+    firebase.auth.EmailAuthProvider.PROVIDER_ID
+  ],
+  signInSuccessURL: 'movies.html'
+}
+ui.start('.sign-in-or-sign-out', AuthUIConfig)
+
+
   let db = firebase.firestore()
   let apiKey = 'your TMDB API key'
-  let response = await fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&language=en-US`)
+  let response = await fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=2a61afe8c8867846167075eecc9305a6&language=en-US`)
   let json = await response.json()
   let movies = json.results
   console.log(movies)
@@ -40,6 +54,8 @@ window.addEventListener('DOMContentLoaded', async function(event) {
 //         (provided) script tags for all necessary Firebase services – i.e. Firebase
 //         Auth, Firebase Cloud Firestore, and Firebase UI for Auth; also
 //         add the CSS file for FirebaseUI for Auth.
+
+
 // Step 2: Change the main event listener from DOMContentLoaded to 
 //         firebase.auth().onAuthStateChanged and include conditional logic 
 //         shows a login UI when signed, and the list of movies when signed
