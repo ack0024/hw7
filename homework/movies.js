@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', async function(event) {
+firebase.auth().onAuthStateChanged(async function(user) {
 
 //add sign in 
 
@@ -55,7 +55,6 @@ ui.start('.sign-in-or-sign-out', AuthUIConfig)
 //         Auth, Firebase Cloud Firestore, and Firebase UI for Auth; also
 //         add the CSS file for FirebaseUI for Auth.
 
-
 // Step 2: Change the main event listener from DOMContentLoaded to 
 //         firebase.auth().onAuthStateChanged and include conditional logic 
 //         shows a login UI when signed, and the list of movies when signed
@@ -64,6 +63,7 @@ ui.start('.sign-in-or-sign-out', AuthUIConfig)
 //         in as <name>" along with a link to "Sign out". Ensure that a document
 //         is set in the "users" collection for each user that signs in to 
 //         your application.
+
 // Step 3: Setting the TMDB movie ID as the document ID on your "watched" collection
 //         will no longer work. The document ID should now be a combination of the
 //         TMDB movie ID and the user ID indicating which user has watched. 
