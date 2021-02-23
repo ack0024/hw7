@@ -5,9 +5,10 @@ firebase.auth().onAuthStateChanged(async function (user) {
 
     //starting code provided 
 
+
     let db = firebase.firestore()
-    let apiKey = 'your TMDB API key'
-    let response = await fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=2a61afe8c8867846167075eecc9305a6&language=en-US`)
+    let apiKey = '2a61afe8c8867846167075eecc9305a6'
+    let response = await fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&language=en-US`)
     let json = await response.json()
     let movies = json.results
     console.log(movies)
