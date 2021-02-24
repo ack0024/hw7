@@ -13,7 +13,7 @@ firebase.auth().onAuthStateChanged(async function (user) {
     let movies = json.results
     console.log(movies)
 
-    //loop through all movies 
+   
     for (let i = 0; i < movies.length; i++) {
       let movie = movies[i]
       let docRef = await db.collection('watched').doc(`${movie.id}-${user.uid}`).get()
@@ -38,7 +38,7 @@ firebase.auth().onAuthStateChanged(async function (user) {
         await db.collection('watched').doc(`${movie.id}-${user.uid}`).set({})
       })
     }
-    //end of four loops 
+    
 
     console.log(user)
     let userName = user.displayName
@@ -54,9 +54,9 @@ Sign in as ${userName}
       document.location.href = 'movies.html'
     })
 
-    //end of if statment 
+    
   }
-  // Start to second part of Step 2 
+ 
   else {
     let ui = new firebaseui.auth.AuthUI(firebase.auth())
 
@@ -69,23 +69,7 @@ Sign in as ${userName}
     ui.start('.sign-in-or-sign-out', AuthUIConfig)
   }
 
-  // } else {
-  //   // Signed out
-  //   console.log('signed out')
-  //   // Hide the form when signed-out
-  //   document.querySelector('form').classList.add('hidden')
-  //   // Initializes FirebaseUI Auth
-  //   let ui = new firebaseui.auth.AuthUI(firebase.auth())
-  //   // FirebaseUI configuration
-  //   let authUIConfig = {
-  //     signInOptions: [
-  //       firebase.auth.EmailAuthProvider.PROVIDER_ID
-  //     ],
-  //     signInSuccessUrl: 'movies.html'
-  //   }
-  // }
-  //   // Starts FirebaseUI Auth
-  //ui.start('.sign-in-or-sign-out', authUIConfig)
+  
 
 
 
